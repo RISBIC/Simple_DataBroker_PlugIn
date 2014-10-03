@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import com.arjuna.databroker.data.DataFlow;
 import com.arjuna.databroker.data.DataProvider;
 import com.arjuna.databroker.data.DataSource;
+import com.arjuna.databroker.data.connector.NamedDataProvider;
 import com.arjuna.databroker.data.jee.annotation.DataProviderInjection;
 
 public class SimpleDataSource implements DataSource
@@ -95,5 +96,5 @@ public class SimpleDataSource implements DataSource
     private Map<String, String>  _properties;
     private DataFlow             _dataFlow;
     @DataProviderInjection
-    private DataProvider<String> _dataProvider;
+    private NamedDataProvider<String> _dataProvider;
 }
