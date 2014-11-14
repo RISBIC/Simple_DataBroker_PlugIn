@@ -6,16 +6,20 @@ package com.arjuna.dbplugins.simple.dataflownodes;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.arjuna.databroker.data.DataFlow;
 import com.arjuna.databroker.data.DataProvider;
 import com.arjuna.databroker.data.DataSource;
 import com.arjuna.databroker.data.connector.NamedDataProvider;
 import com.arjuna.databroker.data.jee.annotation.DataProviderInjection;
+import com.arjuna.databroker.data.jee.annotation.PreActivated;
+import com.arjuna.databroker.data.jee.annotation.PreDeactivated;
 
 public class SimpleDataSource implements DataSource
 {
@@ -91,6 +95,61 @@ public class SimpleDataSource implements DataSource
         else
             return null;
     }
+
+    @PreActivated
+    public void start()
+    {
+        _finish = false;
+        _waiter = new Waiter();
+        _waiter.start();
+    }
+
+    @PreDeactivated
+    public void finish()
+    {
+    	_waiter.finish();
+    }
+
+    private class Waiter extends Thread
+    {
+        @Override
+        public void run()
+        {
+            try
+            {
+                while (! _finish)
+                {
+                    _dataProvider.produce("Data: " + (new Date()).toString());
+                    if (_finish)
+                        Thread.sleep(2000);
+                }
+            }
+            catch (InterruptedException interruptedException)
+            {
+            }
+            catch (Throwable throwable)
+            {
+                logger.log(Level.WARNING, "Problem while watching file", throwable);
+            }
+        }
+
+        public void finish()
+        {
+            try
+            {
+                _finish = true;
+                this.interrupt();
+                this.join();
+            }
+            catch (Throwable throwable)
+            {
+                logger.log(Level.WARNING, "Problem during file watcher shutdown", throwable);
+            }
+        }
+    }
+
+    private Waiter  _waiter;
+    private boolean _finish;
 
     private String               _name;
     private Map<String, String>  _properties;
