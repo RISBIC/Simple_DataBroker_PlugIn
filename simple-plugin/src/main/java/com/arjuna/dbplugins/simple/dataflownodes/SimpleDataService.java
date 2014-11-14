@@ -70,12 +70,12 @@ public class SimpleDataService implements DataService
 
     public void export(String data)
     {
-        logger.log(Level.FINE, "SimpleDataService.export: " + data);
+        logger.log(Level.INFO, "SimpleDataService.export: " + data);
     }
 
     public void dummyImport(String data)
     {
-        logger.log(Level.FINE, "SimpleDataSource.dummyImport: " + data);
+        logger.log(Level.INFO, "SimpleDataService.dummyImport: " + data);
 
         _dataProvider.produce(data);
     }

@@ -25,7 +25,7 @@ public class SimpleDataSink implements DataSink
 
     public SimpleDataSink(String name, Map<String, String> properties)
     {
-        logger.log(Level.FINE, "SimpleDataSink: " + name + ", " + properties);
+        logger.log(Level.INFO, "SimpleDataSink: " + name + ", " + properties);
 
         _name       = name;
         _properties = properties;
@@ -71,7 +71,7 @@ public class SimpleDataSink implements DataSink
 
     public void send(String data)
     {
-        logger.log(Level.FINE, "SimpleDataSink.send: data = " + data);
+        logger.log(Level.INFO, "SimpleDataSink.send: data = " + data);
 
         _sentHistory.add(data);
     }

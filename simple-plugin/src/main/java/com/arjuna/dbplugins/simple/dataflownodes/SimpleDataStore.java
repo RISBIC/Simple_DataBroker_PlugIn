@@ -26,7 +26,7 @@ public class SimpleDataStore implements DataStore
 
     public SimpleDataStore(String name, Map<String, String> properties)
     {
-        logger.log(Level.FINE, "SimpleDataStore: " + name + ", " + properties);
+        logger.log(Level.INFO, "SimpleDataStore: " + name + ", " + properties);
 
         _name          = name;
         _properties    = properties;
@@ -70,12 +70,12 @@ public class SimpleDataStore implements DataStore
 
     public void store(String data)
     {
-        logger.log(Level.FINE, "SimpleDataStore.store: data = " + data);
+        logger.log(Level.INFO, "SimpleDataStore.store: data = " + data);
     }
 
     public void dummyQueryReport(String data)
     {
-        logger.log(Level.FINE, "SimpleDataSource.dummyQueryReport: " + data);
+        logger.log(Level.INFO, "SimpleDataStore.dummyQueryReport: " + data);
 
         _dataProvider.produce(data);
     }

@@ -27,7 +27,7 @@ public class SimpleDataSource implements DataSource
 
     public SimpleDataSource(String name, Map<String, String> properties)
     {
-        logger.log(Level.FINE, "SimpleDataSource: " + name + ", " + properties);
+        logger.log(Level.INFO, "SimpleDataSource: " + name + ", " + properties);
 
         _name          = name;
         _properties    = properties;
@@ -71,7 +71,7 @@ public class SimpleDataSource implements DataSource
 
     public void dummyGetData(String data)
     {
-        logger.log(Level.FINE, "SimpleDataSource.dummyGetData: " + data);
+        logger.log(Level.INFO, "SimpleDataSource.dummyGetData: " + data);
 
         _dataProvider.produce(data);
     }

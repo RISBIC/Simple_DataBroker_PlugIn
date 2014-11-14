@@ -26,7 +26,7 @@ public class SimpleDataProcessor implements DataProcessor
 
     public SimpleDataProcessor(String name, Map<String, String> properties)
     {
-        logger.log(Level.FINE, "SimpleDataProcessor: " + name + ", " + properties);
+        logger.log(Level.INFO, "SimpleDataProcessor: " + name + ", " + properties);
 
         _name       = name;
         _properties = properties;
@@ -70,7 +70,7 @@ public class SimpleDataProcessor implements DataProcessor
 
     public void process(String data)
     {
-        logger.log(Level.FINE, "SimpleDataProcessor.process: " + data);
+        logger.log(Level.INFO, "SimpleDataProcessor.process: " + data);
 
         _dataProvider.produce("[" + data + "]");
     }
