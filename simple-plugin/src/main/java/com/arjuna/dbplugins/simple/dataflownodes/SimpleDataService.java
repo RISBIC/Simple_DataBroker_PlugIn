@@ -15,6 +15,8 @@ import com.arjuna.databroker.data.DataConsumer;
 import com.arjuna.databroker.data.DataFlow;
 import com.arjuna.databroker.data.DataProvider;
 import com.arjuna.databroker.data.DataService;
+import com.arjuna.databroker.data.connector.NamedDataProvider;
+import com.arjuna.databroker.data.connector.ReferrerDataConsumer;
 import com.arjuna.databroker.data.jee.annotation.DataConsumerInjection;
 import com.arjuna.databroker.data.jee.annotation.DataProviderInjection;
 
@@ -121,7 +123,7 @@ public class SimpleDataService implements DataService
     private Map<String, String>  _properties;
     private DataFlow             _dataFlow;
     @DataConsumerInjection(methodName="export")
-    private DataConsumer<String> _dataConsumer;
+    private ReferrerDataConsumer<String> _dataConsumer;
     @DataProviderInjection
-    private DataProvider<String> _dataProvider;
+    private NamedDataProvider<String> _dataProvider;
 }

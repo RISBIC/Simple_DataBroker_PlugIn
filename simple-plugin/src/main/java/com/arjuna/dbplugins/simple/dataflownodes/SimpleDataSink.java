@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import com.arjuna.databroker.data.DataConsumer;
 import com.arjuna.databroker.data.DataFlow;
 import com.arjuna.databroker.data.DataSink;
+import com.arjuna.databroker.data.connector.ReferrerDataConsumer;
 import com.arjuna.databroker.data.jee.annotation.DataConsumerInjection;
 
 public class SimpleDataSink implements DataSink
@@ -106,5 +107,5 @@ public class SimpleDataSink implements DataSink
     private Map<String, String>  _properties;
     private DataFlow             _dataFlow;
     @DataConsumerInjection(methodName="send")
-    private DataConsumer<String> _dataConsumer;
+    private ReferrerDataConsumer<String> _dataConsumer;
 }
